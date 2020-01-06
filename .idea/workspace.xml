@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17b7b24a-be1c-4f54-b28f-901489063a61" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/contracts/DemystifyToken.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/DemystifyToken.sol" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/2_Token_migration.js" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/2_Token_migration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/DemystifyToken.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_DemystifyToken.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_DemystifyToken.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_DemystifyToken.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1578311948068</updated>
       <workItem from="1578311949599" duration="1036000" />
-      <workItem from="1578317052024" duration="4562000" />
+      <workItem from="1578317052024" duration="5534000" />
     </task>
     <servers />
   </component>

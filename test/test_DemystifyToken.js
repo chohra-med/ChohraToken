@@ -35,15 +35,25 @@ contract('DemystifyToken', function (accounts) {
         }).then(assert.fail)
             .catch(function (e) {
                 assert(e.message.indexOf('revert') >= 0, 'error');
-                return tokenInstance.transfer(accounts[1], 20, { from: accounts[0] });
+                return tokenInstance.transfer.call(accounts[1], 2);
+            }).then(function (success) {
+                assert.equal(success, 1, 'Vall Works');
 
-            }).then(function (reciept) {
+                return tokenInstance.transfer(accounts[1], 20, {from: accounts[0]});
+
+            }).then(function (receipt) {
+                assert.equal(receipt.logs.length, 1, 'only Onye Evenet');
+                assert.equal(receipt.logs[0].event, 'Transfer', 'only Onye Evenet');
+                assert.equal(receipt.logs[0].args._from, accounts[0], 'First Account ');
+                assert.equal(receipt.logs[0].args._to, accounts[1], 'Second Account');
+                assert.equal(receipt.logs[0].args._value, 20, 'Value');
                 return tokenInstance.balanceOf(accounts[1]);
-            }).then(function(balance){
-                assert.equal(balance.toNumber(),20,'has been transformed');
+
+            }).then(function (balance) {
+                assert.equal(balance.toNumber(), 20, 'has been transformed');
                 return tokenInstance.balanceOf(accounts[0]);
-            }).then(function(balance){
-                assert.equal(balance.toNumber(),123213-20,'has been transformed');
+            }).then(function (balance) {
+                assert.equal(balance.toNumber(), 123213 - 20, 'has been transformed');
             })
     });
 });

@@ -1,0 +1,356 @@
+{
+  "contractName": "DemystifyToken",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.12+commit.7709ece9\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/aa/IdeaProjects/DemystifyToken/contracts/DemystifyToken.sol\":\"DemystifyToken\"},\"evmVersion\":\"petersburg\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/aa/IdeaProjects/DemystifyToken/contracts/DemystifyToken.sol\":{\"keccak256\":\"0x6aba6561ae269ef6b5b4fa9f5d7a7516acb368428371669b56036165f9471064\",\"urls\":[\"bzz-raw://c2d7a2f8543682d2d1d0a86803dffcfe97c4f0d50d14913daeeabee1a1c20553\",\"dweb:/ipfs/QmZNNCQrF9sq3t7xXLupEZp9hu1ERDMc8KnTXutzWT9eET\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b506201e14d6000819055506084806100286000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c806318160ddd14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b6000548156fea265627a7a72315820c54afc63ed9faa10f5254ae4377199ffeb8b8caf552b748569ed1f612aa403fd64736f6c634300050c0032",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c806318160ddd14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b6000548156fea265627a7a72315820c54afc63ed9faa10f5254ae4377199ffeb8b8caf552b748569ed1f612aa403fd64736f6c634300050c0032",
+  "sourceMap": "27:124:0:-;;;90:58;8:9:-1;5:2;;;30:1;27;20:12;5:2;90:58:0;135:6;123:11;:18;;;;27:124;;;;;;",
+  "deployedSourceMap": "27:124:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;27:124:0;;;;;;;;;;;;;;;;;;;58:26;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.5.12;\n\n\ncontract DemystifyToken {\n\n    uint256 public totalSupply;\n    constructor () public  {\n        totalSupply=123213;\n    }\n\n}",
+  "sourcePath": "/Users/aa/IdeaProjects/DemystifyToken/contracts/DemystifyToken.sol",
+  "ast": {
+    "absolutePath": "/Users/aa/IdeaProjects/DemystifyToken/contracts/DemystifyToken.sol",
+    "exportedSymbols": {
+      "DemystifyToken": [
+        12
+      ]
+    },
+    "id": 13,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 12,
+        "linearizedBaseContracts": [
+          12
+        ],
+        "name": "DemystifyToken",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 3,
+            "name": "totalSupply",
+            "nodeType": "VariableDeclaration",
+            "scope": 12,
+            "src": "58:26:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 2,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "58:7:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 10,
+              "nodeType": "Block",
+              "src": "113:35:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 8,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 6,
+                      "name": "totalSupply",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3,
+                      "src": "123:11:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "313233323133",
+                      "id": 7,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "135:6:0",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_123213_by_1",
+                        "typeString": "int_const 123213"
+                      },
+                      "value": "123213"
+                    },
+                    "src": "123:18:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 9,
+                  "nodeType": "ExpressionStatement",
+                  "src": "123:18:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 11,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "102:2:0"
+            },
+            "returnParameters": {
+              "id": 5,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "113:0:0"
+            },
+            "scope": 12,
+            "src": "90:58:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 13,
+        "src": "27:124:0"
+      }
+    ],
+    "src": "0:151:0"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/aa/IdeaProjects/DemystifyToken/contracts/DemystifyToken.sol",
+    "exportedSymbols": {
+      "DemystifyToken": [
+        12
+      ]
+    },
+    "id": 13,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 12,
+        "linearizedBaseContracts": [
+          12
+        ],
+        "name": "DemystifyToken",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 3,
+            "name": "totalSupply",
+            "nodeType": "VariableDeclaration",
+            "scope": 12,
+            "src": "58:26:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 2,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "58:7:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "value": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 10,
+              "nodeType": "Block",
+              "src": "113:35:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 8,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "id": 6,
+                      "name": "totalSupply",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3,
+                      "src": "123:11:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "hexValue": "313233323133",
+                      "id": 7,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "135:6:0",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_123213_by_1",
+                        "typeString": "int_const 123213"
+                      },
+                      "value": "123213"
+                    },
+                    "src": "123:18:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "id": 9,
+                  "nodeType": "ExpressionStatement",
+                  "src": "123:18:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 11,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "102:2:0"
+            },
+            "returnParameters": {
+              "id": 5,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "113:0:0"
+            },
+            "scope": 12,
+            "src": "90:58:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 13,
+        "src": "27:124:0"
+      }
+    ],
+    "src": "0:151:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.12+commit.7709ece9.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x97BEC91C8f7079C44cC8b47eE632eD3BF2674425",
+      "transactionHash": "0x4e08b1b294e91eda74274364b7293861a14874d7975a6cacd988983ac4b15881"
+    }
+  },
+  "schemaVersion": "3.0.20",
+  "updatedAt": "2020-01-06T13:54:47.892Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

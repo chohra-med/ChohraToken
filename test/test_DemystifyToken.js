@@ -42,8 +42,8 @@ contract('DemystifyToken', function (accounts) {
                 return tokenInstance.transfer(accounts[1], 20, {from: accounts[0]});
 
             }).then(function (receipt) {
-                assert.equal(receipt.logs.length, 1, 'only Onye Evenet');
-                assert.equal(receipt.logs[0].event, 'Transfer', 'only Onye Evenet');
+                assert.equal(receipt.logs.length, 1, 'only One call');
+                assert.equal(receipt.logs[0].event, 'Transfer', 'The transfer event');
                 assert.equal(receipt.logs[0].args._from, accounts[0], 'First Account ');
                 assert.equal(receipt.logs[0].args._to, accounts[1], 'Second Account');
                 assert.equal(receipt.logs[0].args._value, 20, 'Value');
@@ -56,4 +56,23 @@ contract('DemystifyToken', function (accounts) {
                 assert.equal(balance.toNumber(), 123213 - 20, 'has been transformed');
             })
     });
+    it('approve Token', function () {
+        let tokenInstance;
+        return DemystifyToken.deployed().then(function (instance) {
+            tokenInstance = instance;
+            return tokenInstance.approve.call(accounts[1], 20);
+        }).then(function (result) {
+            assert.equal(result, true, 'the result is true');
+            return tokenInstance.approve(accounts[1],20,{
+                from :accounts[0]
+            });
+        }).then(function (receipt) {
+            assert.equal(receipt.logs.length, 1, 'only One call');
+            assert.equal(receipt.logs[0].event, 'Approval', 'The transfer event');
+            assert.equal(receipt.logs[0].args._owner, accounts[0], 'First Account ');
+            assert.equal(receipt.logs[0].args._spender, accounts[1], 'Second Account');
+            assert.equal(receipt.logs[0].args._value, 20, 'Value');
+
+        })
+    })
 });

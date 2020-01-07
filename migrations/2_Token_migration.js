@@ -1,11 +1,10 @@
-const DemystifyToken = artifacts.require("DemystifyToken");
-let DemystifyTokenSale = artifacts.require("DemystifyTokenSale");
+var DemystifyToken = artifacts.require("DemystifyToken");
+var DemystifyTokenSale = artifacts.require("DemystifyTokenSale");
 
-module.exports = function (deployer) {
-    let tokenPrice = 1000000000000000;
-    deployer.deploy(DemystifyToken, 123213).then(function () {
-        deployer.deploy(DemystifyTokenSale,
-            DemystifyToken.address, tokenPrice
-        );
+module.exports = function(deployer) {
+    deployer.deploy(DemystifyToken, 12321312).then(function() {
+        // Token price is 0.001 Ether
+        var tokenPrice = 1000000000000000;
+        return deployer.deploy(DemystifyTokenSale, DemystifyToken.address, tokenPrice);
     });
 };

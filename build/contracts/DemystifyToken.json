@@ -5082,12 +5082,12 @@
         }
       },
       "links": {},
-      "address": "0xeac56B847a8513cf6e466fb6185d77c7660dE1C1",
-      "transactionHash": "0xf069afbad659d937ddf241fe3be71fcec8a019d0f6877956d488d4758c8288e9"
+      "address": "0x7EB96ced7c9595c1BBe350EC86fd1a20Ba4f8D47",
+      "transactionHash": "0xc4cc8ffe99d7c8f83e2e9dfbf3f2d2ca195b0f9984f4d875ff0ed84042d1e529"
     }
   },
   "schemaVersion": "3.0.20",
-  "updatedAt": "2020-01-06T22:03:13.409Z",
+  "updatedAt": "2020-01-07T13:04:06.161Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}

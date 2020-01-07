@@ -2,7 +2,7 @@
 
 contract('DemystifyToken', function (accounts) {
     let tokenInstance;
-
+    let totalToken=12321312;
     it('Function Name', function () {
         DemystifyToken.deployed().then(function (instance) {
             tokenInstance = instance;
@@ -22,10 +22,10 @@ contract('DemystifyToken', function (accounts) {
             tokenInstance = instance;
             return tokenInstance.totalSupply();
         }).then(function (totalSupply) {
-            assert.equal(totalSupply.toNumber(), 123213, 'set the total number');
+            assert.equal(totalSupply.toNumber(), totalToken, 'set the total number');
             return tokenInstance.balanceOf(accounts[0]);
         }).then(function (adminBalance) {
-            assert.equal(adminBalance.toNumber(), 123213, 'it is equal');
+            assert.equal(adminBalance.toNumber(), totalToken, 'it is equal');
         })
     });
     it('Test Transfert ', function () {
@@ -53,7 +53,7 @@ contract('DemystifyToken', function (accounts) {
                 assert.equal(balance.toNumber(), 20, 'has been transformed');
                 return tokenInstance.balanceOf(accounts[0]);
             }).then(function (balance) {
-                assert.equal(balance.toNumber(), 123213 - 20, 'has been transformed');
+                assert.equal(balance.toNumber(), totalToken - 20, 'has been transformed');
             })
     });
     it('approve Token', function () {

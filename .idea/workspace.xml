@@ -5,8 +5,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/contracts/DemystifyToken.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/DemystifyToken.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build/contracts/Migrations.json" beforeDir="false" afterPath="$PROJECT_DIR$/build/contracts/Migrations.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contracts/DemystifyTokenSale.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/DemystifyTokenSale.sol" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/migrations/2_Token_migration.js" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/2_Token_migration.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/test_DemystifyToken.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_DemystifyToken.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_DemystifyTokenSale.js" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_DemystifyTokenSale.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +59,7 @@
   <component name="RunManager">
     <configuration name="howCoin.updateSupply" type="SolidityConfigurationType" factoryName="Solidity" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
       <module name="DemystifyToken" />
-      <option name="VMParameters" />
+      <option name="VMParameters" value="" />
       <option name="allowRunningInParallel" value="false" />
       <option name="alternativeJrePath" />
       <option name="alternativeJrePathEnabled" value="false" />
@@ -65,14 +67,14 @@
         <map />
       </option>
       <option name="passParentEnvs" value="true" />
-      <option name="programParameters" />
+      <option name="programParameters" value="" />
       <option name="workingDirectory" value="" />
       <option name="contractName" value="howCoin" />
       <option name="contractFile" value="$PROJECT_DIR$/contracts/demystify" />
       <option name="functionName" value="updateSupply" />
-      <option name="vmParameters" />
-      <option name="programParameters" />
-      <option name="workingDirectory" />
+      <option name="vmParameters" value="" />
+      <option name="programParameters" value="" />
+      <option name="workingDirectory" value="" />
       <option name="envs">
         <map />
       </option>
@@ -99,7 +101,7 @@
       <option name="presentableId" value="Default" />
       <updated>1578311948068</updated>
       <workItem from="1578311949599" duration="1036000" />
-      <workItem from="1578317052024" duration="13368000" />
+      <workItem from="1578317052024" duration="16888000" />
     </task>
     <servers />
   </component>

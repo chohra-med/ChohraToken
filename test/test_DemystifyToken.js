@@ -1,4 +1,4 @@
-let DemystifyToken = artifacts.require("DemystifyToken");
+    let DemystifyToken = artifacts.require("DemystifyToken");
 
 contract('DemystifyToken', function (accounts) {
     let tokenInstance;

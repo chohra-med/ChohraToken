@@ -9,6 +9,7 @@ contract DemystifyTokenSale {
     uint256 public tokenPrice;
     uint256 public tokenSold;
 
+
     event Sell(
         address indexed _buyer,
         uint256 _value

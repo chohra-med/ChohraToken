@@ -1,76 +1,92 @@
-let DemystifyTokenSale = artifacts.require("DemystifyTokenSale");
-let DemystifyToken = artifacts.require("DemystifyToken");
+var DemystifyToken = artifacts.require('DemystifyToken');
+var DemystifyTokenSale = artifacts.require('DemystifyTokenSale');
 
-contract("DemystifyTokenSale", function (accounts) {
-    let tokenInstance;
-    let tokenSaleInstance;
-    let tokenPrice = 1000000000000000;
-    let admin = accounts[0];
-    let buyer = accounts[1];
-    let tokensAvailable = 610000000000;
-    let numberOfTokens = 20;
+contract('DemystifyTokenSale', function (accounts) {
+    var tokenInstance;
+    var tokenSaleInstance;
+    var admin = accounts[0];
+    var buyer = accounts[1];
+    var tokenPrice = 1000000000000000; // in wei
+    var tokensAvailable = 750000;
+    var numberOfTokens;
 
-    it("has been initialized", function () {
-        DemystifyTokenSale.deployed().then(function (instance) {
-            tokenInstance = instance;
-            return tokenInstance.adress;
+    it('initializes the contract with the correct values', function () {
+        return DemystifyTokenSale.deployed().then(function (instance) {
+            tokenSaleInstance = instance;
+            return tokenSaleInstance.address;
         }).then(function (address) {
-            assert.notEqual(address, "aez", "Has been deployed")
-        })
+            assert.notEqual(address, 0x0, 'has contract address');
+            return tokenSaleInstance.address;
+        }).then(function (address) {
+            assert.notEqual(address, 0x0, 'has token contract address');
+            return tokenSaleInstance.tokenPrice();
+        }).then(function (price) {
+            console.log('the price iiiiiis',price.toNumber());
+            assert.equal(price.toNumber(), tokenPrice, 'token price is correct');
+        });
     });
-    it("test Function", function () {
-        DemystifyToken.deployed().then(function (instance) {
+
+    it('facilitates token buying', function () {
+        return DemystifyToken.deployed().then(function (instance) {
+            // Grab token instance first
             tokenInstance = instance;
-            DemystifyToken.deployed().then(function (instance) {
-                tokenSaleInstance = instance;
-                tokenInstance.transfer(tokenSaleInstance.address, tokensAvailable, {from: admin});
-                return tokenSaleInstance.buyTokens(numberOfTokens, {from: buyer, value: 2})
-                    .then(assert.fail).catch(function (e) {
-                        assert(e.message.indexOf('revert') > 0, 'it has fail');
-                        return tokenSaleInstance.buyTokens(6100000000002, {
-                            from: buyer,
-                            value: 6100000000002 * tokenPrice
-                        })
-                    })
-                    .then(assert.fail).catch(function (e) {
-                        assert(e.message.indexOf('revert') > 0, 'it has fail');
-
-                        return tokenSaleInstance.buyTokens(numberOfTokens, {
-                            from: buyer,
-                            value: numberOfTokens * tokenPrice
-                        })
-                    }).then(function (receipt) {
-                        assert.equal(receipt.logs.length, 1, 'triggers one event');
-                        assert.equal(receipt.logs[0].event, 'Sell', 'should be the "Sell" event');
-                        assert.equal(receipt.logs[0].args._buyer, buyer, 'logs the account that purchased the tokens');
-                        assert.equal(receipt.logs[0].args._amount, numberOfTokens, 'logs the number of tokens purchased');
-                        return tokenSaleInstance.tokenSold();
-                    }).then(function (tokenSold) {
-                        assert.notEqual(tokenSold.toNumber(),12321312 -numberOfTokens, "the value is equal");
-
-                    })
-            })
-        })
+            return DemystifyTokenSale.deployed();
+        }).then(function (instance) {
+            // Then grab token sale instance
+            tokenSaleInstance = instance;
+            // Provision 75% of all tokens to the token sale
+            return tokenInstance.transfer(tokenSaleInstance.address, tokensAvailable, {from: admin})
+        }).then(function (receipt) {
+            numberOfTokens = 10;
+            return tokenSaleInstance.buyTokens(numberOfTokens, {from: buyer, value: numberOfTokens * tokenPrice})
+        }).then(function (receipt) {
+            assert.equal(receipt.logs.length, 1, 'triggers one event');
+            assert.equal(receipt.logs[0].event, 'Sell', 'should be the "Sell" event');
+            assert.equal(receipt.logs[0].args._buyer, buyer, 'logs the account that purchased the tokens');
+            assert.equal(receipt.logs[0].args._amount, numberOfTokens, 'logs the number of tokens purchased');
+            return tokenSaleInstance.tokensSold();
+        }).then(function (amount) {
+            assert.equal(amount.toNumber(), numberOfTokens, 'increments the number of tokens sold');
+            return tokenInstance.balanceOf(buyer);
+        }).then(function (balance) {
+            assert.equal(balance.toNumber(), numberOfTokens);
+            return tokenInstance.balanceOf(tokenSaleInstance.address);
+        }).then(function (balance) {
+            assert.equal(balance.toNumber(), tokensAvailable - numberOfTokens);
+            // Try to buy tokens different from the ether value
+            return tokenSaleInstance.buyTokens(numberOfTokens, {from: buyer, value: 1});
+        }).then(assert.fail).catch(function (error) {
+            assert(error.message.indexOf('revert') >= 0, 'msg.value must equal number of tokens in wei');
+            return tokenSaleInstance.buyTokens(800000, {from: buyer, value: numberOfTokens * tokenPrice});
+        }).then(assert.fail).catch(function (error) {
+            console.log('errooooooor',error);
+            assert(error.message.indexOf('revert') >= 0, 'cannot purchase more tokens than available');
+        });
     });
 
     it('ends token sale', function () {
-        DemystifyToken.deployed().then(function (instance) {
+        return DemystifyToken.deployed().then(function (instance) {
+            // Grab token instance first
             tokenInstance = instance;
-            DemystifyToken.deployed().then(function (instance) {
-                tokenSaleInstance = instance;            // Try to end sale from account other than the admin
+            return DemystifyTokenSale.deployed();
+        }).then(function (instance) {
+            // Then grab token sale instance
+            tokenSaleInstance = instance;
+            // Try to end sale from account other than the admin
             return tokenSaleInstance.endSale({from: buyer});
         }).then(assert.fail).catch(function (error) {
             assert(error.message.indexOf('revert' >= 0, 'must be admin to end sale'));
             // End sale as admin
+            console.log('errooooooor : tokenSaleInstance.endSale({from: buyer});',error);
+
             return tokenSaleInstance.endSale({from: admin});
         }).then(function (receipt) {
             return tokenInstance.balanceOf(admin);
         }).then(function (balance) {
-            assert.equal(balance.toNumber(), 12321312-numberOfTokens, 'returns all unsold dapp tokens to admin');
+            assert.equal(balance.toNumber(), 999990, 'returns all unsold dapp tokens to admin');
             // Check that the contract has no balance
-            balance = web3.eth.getBalance(tokenSaleInstance.address);
+            balance = web3.eth.getBalance(tokenSaleInstance.address)
             assert.equal(balance.toNumber(), 0);
         });
     });
-});
 });

@@ -3,8 +3,8 @@ pragma solidity ^0.5.12;
 
 contract DemystifyToken {
 
-    string public name = "name";
-    string public symbol = "dem";
+    string public name = "Demystify Token";
+    string public symbol = "Dem";
     string public standard = "Token v0.1";
     uint256 public totalSupply;
 
@@ -23,13 +23,13 @@ contract DemystifyToken {
         address  indexed _spender,
         uint256 _value
     );
-    constructor (uint256 _initialSupply) public  {
+    constructor (uint256  _initialSupply) public  {
         balanceOf[msg.sender] = _initialSupply;
         totalSupply = _initialSupply;
 
     }
 
-    function transfer(address _to, uint256 _value) public
+    function transfer(address  _to, uint256  _value) public
     returns (bool success){
         require(_value < balanceOf[msg.sender]);
         balanceOf[_to] += _value;
@@ -38,7 +38,7 @@ contract DemystifyToken {
         return true;
     }
 
-    function approve(address _spender, uint256 _value) public
+    function approve(address  _spender, uint256  _value) public
     returns (bool success){
 
         allowance[msg.sender][_spender] = _value;
@@ -50,7 +50,7 @@ contract DemystifyToken {
 
 
 
-    function transferFrom(address _from, address _to, uint256 _value) public
+    function transferFrom(address  _from, address  _to, uint256  _value) public
     returns (bool success){
 
 

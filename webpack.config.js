@@ -35,7 +35,22 @@ module.exports = {
                 test: /\.json$/,
                 loader: 'json-loader',
                 include: '/build/contracts/'
+            },
+            {
+                test: /\.sol/,
+                use: [
+                    {
+                        loader: 'json-loader'
+                    },
+                    {
+                        loader: '@truffle/solidity-loader',
+                        options: {
+                            network:"http://127.0.0.1:7545",
+                        }
+                    }
+                ]
             }
+
         ]
     }
 }

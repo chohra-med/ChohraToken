@@ -8,10 +8,10 @@ contract('DemystifyToken', function (accounts) {
             tokenInstance = instance;
             return tokenInstance.name();
         }).then(function (name) {
-            assert.equal(name, 'name', 'the name is Setted');
+            assert.equal(name, 'Demystify Token', 'the name is Setted');
             return tokenInstance.symbol();
         }).then(function (symbol) {
-            assert.equal(symbol, 'dem', 'the Symbol is Equal');
+            assert.equal(symbol, 'Dem', 'the Symbol is Equal');
             return tokenInstance.standard();
         }).then(function (standard) {
             assert.equal(standard, 'Token v0.1', 'the Symbol is Equal');

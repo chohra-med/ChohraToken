@@ -17,6 +17,7 @@ import Icon from '@material-ui/core/Icon';
 import TextField from "@material-ui/core/TextField";
 import getWeb3 from "./Utils/getWeb3";
 import 'babel-polyfill';
+import Spinner from "reactstrap/es/Spinner";
 
 
 const tokenAvailable = 750000;
@@ -27,7 +28,7 @@ class App extends React.Component {
         this.state = {
             tokenBought: 0,
             account: '0x0',
-            loading: true,
+            loading: false,
             tokenSold: 0,
             tokenPrice: 0,
             accountToken: 0,
@@ -40,7 +41,6 @@ class App extends React.Component {
         this.buyToken = this.buyToken.bind(this);
         this.handleChange = this.handleChange.bind(this)
 
-        this.watchEvents = this.watchEvents.bind(this)
     }
 
     handleChange(e) {
@@ -74,7 +74,7 @@ class App extends React.Component {
                 DemystifyToken.abi,
                 deployedNetworkForToken && deployedNetworkForToken.address,
             );
-            console.log(tokenInstance,tokenSaleInstance);
+            console.log({tokenInstance, tokenSaleInstance});
 
             let account = accounts[0];
             let tokenPrice = await tokenSaleInstance.methods.tokenPrice().call();
@@ -87,19 +87,16 @@ class App extends React.Component {
                     deployedNetwork.address,
                     tokenAvailable,
                     accountToken,
-
                 );
-                let result = tokenInstance.methods.transfer(deployedNetwork.address, 240).send({
-                    from: account,
-                    gas: 500000,
-                });
+                // let result = tokenInstance.methods.transfer(deployedNetwork.address, 240).send({
+                //     from: account,
+                //     gas: 500000,
+                // });
             } catch (e) {
                 console.log(e);
             }
 
             // TODO: Refactor with promise chain
-            // this.watchEvents();
-
 
 
             let tokenBought = await tokenSold / tokenAvailable;
@@ -142,15 +139,6 @@ class App extends React.Component {
     }
 
 
-    watchEvents() {
-        // TODO: trigger event when vote is counted, not when component renders
-        this.electionInstance.votedEvent({}, {
-            fromBlock: 0,
-            toBlock: 'latest'
-        }).watch((error, event) => {
-            this.setState({voting: false})
-        })
-    }
 
     async buyToken() {
         let {
@@ -168,9 +156,9 @@ class App extends React.Component {
             value: parseInt(numberOfTokens) * tokenPrice,
             gas: 500000,
             message: 'not empty string'
-
-
         });
+        this.setState({loading:true},
+            async ()=>{
 
         let result = await tokenSaleInstance.methods.buyTokens(parseInt(numberOfTokens)).send({
             from: account,
@@ -179,8 +167,11 @@ class App extends React.Component {
             message: 'not empty string'
         });
         console.log(result);
-    }
+                this.setState({loading:false,
+                numberOfTokens:''});
+            })
 
+    }
 
 
     render() {
@@ -191,8 +182,11 @@ class App extends React.Component {
             tokenPrice,
             account,
             accountToken,
-            numberOfTokens
+            numberOfTokens,
+            loading
         } = this.state;
+        if (loading)
+            return (<h1>Loading ....</h1>);
         return (
             <div className='row'>
                 <div className='col-lg-12 text-center'

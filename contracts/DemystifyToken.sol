@@ -3,8 +3,8 @@ pragma solidity ^0.5.12;
 
 contract DemystifyToken {
 
-    string public name = "Demystify Token";
-    string public symbol = "Dem";
+    string public name = "Chohra Token";
+    string public symbol = "CH";
     string public standard = "Token v0.1";
     uint256 public totalSupply;
 

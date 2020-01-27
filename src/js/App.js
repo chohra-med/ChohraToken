@@ -4,7 +4,6 @@ import Web3 from 'web3'
 import contract from 'truffle-contract'
 import DemystifyTokenSale from '../../build/contracts/DemystifyTokenSale.json'
 import DemystifyToken from '../../build/contracts/DemystifyToken.json'
-import Content from './Content'
 import 'bootstrap/dist/css/bootstrap.css'
 import LinearProgress from '@material-ui/core/LinearProgress';
 import InputLabel from "@material-ui/core/InputLabel";
@@ -36,11 +35,8 @@ class App extends React.Component {
             tokenSaleInstance: '',
             tokenInstance: '',
         };
-
-
         this.buyToken = this.buyToken.bind(this);
         this.handleChange = this.handleChange.bind(this)
-
     }
 
     handleChange(e) {
@@ -53,48 +49,34 @@ class App extends React.Component {
 
             // Use web3 to get the user's accounts.
             const web3 = await getWeb3();
-
             // Use web3 to get the user's accounts.
-
-
             const accounts = await web3.eth.getAccounts();
             // Get the contract instance.
-
-
             const networkId = await web3.eth.net.getId();
             let deployedNetwork = DemystifyTokenSale.networks[networkId];
             let tokenSaleInstance = new web3.eth.Contract(
                 DemystifyTokenSale.abi,
                 deployedNetwork && deployedNetwork.address,
             );
-
             let deployedNetworkForToken = DemystifyToken.networks[networkId];
-
             let tokenInstance = new web3.eth.Contract(
                 DemystifyToken.abi,
                 deployedNetworkForToken && deployedNetworkForToken.address,
             );
-            console.log({tokenInstance, tokenSaleInstance});
-
             let account = accounts[0];
             let tokenPrice = await tokenSaleInstance.methods.tokenPrice().call();
             let tokenSold = await tokenSaleInstance.methods.tokensSold().call();
             let accountToken = await tokenInstance.methods.balanceOf(account.toString()).call();
             let e = await tokenInstance.methods.balanceOf(deployedNetwork.address).call();
-            console.log(e);
-            try {
-                console.log(
-                    deployedNetwork.address,
-                    tokenAvailable,
-                    accountToken,
-                );
-                // let result = tokenInstance.methods.transfer(deployedNetwork.address, 240).send({
-                //     from: account,
-                //     gas: 500000,
-                // });
-            } catch (e) {
-                console.log(e);
-            }
+            // try {
+            //
+            //     let result = tokenInstance.methods.transfer(deployedNetwork.address, tokenAvailable).send({
+            //         from: account,
+            //         gas: 500000,
+            //     });
+            // } catch (e) {
+            //     console.log(e);
+            // }
 
             // TODO: Refactor with promise chain
 
@@ -163,8 +145,6 @@ class App extends React.Component {
         let result = await tokenSaleInstance.methods.buyTokens(parseInt(numberOfTokens)).send({
             from: account,
             value: parseInt(numberOfTokens) * tokenPrice,
-            gas: 500000,
-            message: 'not empty string'
         });
         console.log(result);
                 this.setState({loading:false,
@@ -191,7 +171,7 @@ class App extends React.Component {
             <div className='row'>
                 <div className='col-lg-12 text-center'
                 >
-                    <h1>Demystify Token</h1>
+                    <h1>Chohra Token</h1>
 
 
                     <LinearProgress

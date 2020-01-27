@@ -40,7 +40,6 @@ class App extends React.Component {
         this.buyToken = this.buyToken.bind(this);
         this.handleChange = this.handleChange.bind(this)
 
-        this.castVote = this.castVote.bind(this)
         this.watchEvents = this.watchEvents.bind(this)
     }
 
@@ -90,7 +89,7 @@ class App extends React.Component {
                     accountToken,
 
                 );
-                let result = tokenInstance.methods.transfer(deployedNetwork.address, tokenAvailable).send({
+                let result = tokenInstance.methods.transfer(deployedNetwork.address, 240).send({
                     from: account,
                     gas: 500000,
                 });
@@ -154,7 +153,6 @@ class App extends React.Component {
     }
 
     async buyToken() {
-
         let {
             numberOfTokens,
             tokenPrice,
@@ -183,23 +181,17 @@ class App extends React.Component {
         console.log(result);
     }
 
-    castVote(candidateId) {
-        this.setState({voting: true})
-        this.electionInstance.vote(candidateId, {
-            from: this.state.account,
-            gas: 500000
-        }).then((result) => {
-            console.log('worked');
-            this.setState({hasVoted: true})
-        }).catch(e => console.log(e))
-    }
+
 
     render() {
 
-
         const {
-            tokenBought, tokenSold, tokenPrice,
-            account, accountToken, numberOfTokens
+            tokenBought,
+            tokenSold,
+            tokenPrice,
+            account,
+            accountToken,
+            numberOfTokens
         } = this.state;
         return (
             <div className='row'>
